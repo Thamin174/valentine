@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Valentine ❤️</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 360px;
+      padding: 40px 30px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+      text-align: center;
+      animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 25px;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .buttons {
+      position: relative;
+      height: 60px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: absolute;
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff4d6d, #ff758c);
+      color: white;
+      left: 20px;
+    }
+
+    .no {
+      background: white;
+      color: #ff4d6d;
+      right: 20px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .floating span {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
+    }
+
+    .final {
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="card">
+    <div class="heart">❤️</div>
+    <h1>Hey You</h1>
+    <p>I’ve been smiling a lot lately… and you might be the reason 😌</p>
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClick()">Yes 💖</button>
+      <button class="no" id="noBtn">No 🙈</button>
+    </div>
+  </div>
+
+  <div class="floating" id="floating"></div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const floating = document.getElementById('floating');
+
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * 200;
+      const y = Math.random() * 40;
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    });
+
+    function yesClick() {
+      document.getElementById('card').innerHTML = `
+        <div class="final">
+          <div style="font-size:3rem">🥰</div>
+          <h1>Yayyy!!</h1>
+          <p>You just made my heart very happy ❤️</p>
+          <p>Happy Valentine’s Day 💌</p>
+        </div>
+      `;
+      createHearts();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 40; i++) {
+        const span = document.createElement('span');
+        span.innerHTML = Math.random() > 0.5 ? '❤️' : '✨';
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDuration = 4 + Math.random() * 4 + 's';
+        floating.appendChild(span);
+      }
+    }
+  </script>
+
+</body>
+</html>
